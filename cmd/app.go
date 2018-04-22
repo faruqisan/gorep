@@ -5,13 +5,17 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/faruqisan/gorep/configs"
+
 	"github.com/faruqisan/gorep/databases"
 	"github.com/faruqisan/gorep/modules/post"
 )
 
 func main() {
 
-	db, err := databases.GetPgQL()
+	configs := configs.InitConfig()
+
+	db, err := databases.GetDatabase(configs)
 	if err != nil {
 		log.Panicln(err)
 	}
